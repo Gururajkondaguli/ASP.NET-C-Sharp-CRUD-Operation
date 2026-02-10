@@ -1,0 +1,107 @@
+openapi: 3.0.4
+info:
+  title: App
+  version: '1.0'
+paths:
+  /api/Employee/insert:
+    post:
+      tags:
+        - Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+      responses:
+        '200':
+          description: OK
+  '/api/Employee/update/{id}':
+    put:
+      tags:
+        - Employee
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDto'
+      responses:
+        '200':
+          description: OK
+  '/api/Employee/delete/{id}':
+    delete:
+      tags:
+        - Employee
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+  /api/Employee/getall:
+    get:
+      tags:
+        - Employee
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    EmployeeDto:
+      type: object
+      properties:
+        employeeId:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phoneNo:
+          type: string
+          nullable: true
+        departmentId:
+          type: integer
+          format: int32
+        jobTitle:
+          type: string
+          nullable: true
+        dateOfJoining:
+          type: string
+          format: date-time
+        salary:
+          type: number
+          format: double
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+tags:
+  - name: Employee
